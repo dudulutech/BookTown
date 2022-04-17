@@ -22,8 +22,8 @@ public class Role /*implements GrantedAuthority */{
     @Column(name = "role")
     private String role;
 
-    @Override
+    /*@Override
     public String getAuthority() {
         return this.role;
-    }
+    }*/
 }
