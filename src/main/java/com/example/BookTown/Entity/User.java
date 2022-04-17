@@ -5,26 +5,34 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name = "id")
     private Long id;
-    private String fullname;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "full_name")
+    private String fullName;
+
+    @Column(name = "age")
     private Long age;
 
-    public User(String fullname, String email, String password, Long age) {
-        this.fullname = fullname;
-        this.email = email;
-        this.password = password;
-        this.age = age;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> role;
 
-    }
 }

@@ -8,13 +8,22 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Data
 @Table(name = "Role")
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class Role {
+@NoArgsConstructor
+public class Role /*implements GrantedAuthority */{
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
-    private String name;
+
+    @Column(name = "role")
+    private String role;
+
+    @Override
+    public String getAuthority() {
+        return this.role;
+    }
 }
